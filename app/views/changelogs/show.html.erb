@@ -1,0 +1,27 @@
+<% content_for :title, "Changelog < #{@version.name} < REST API" -%>
+<% content_for :hero_unit do %>
+    <h1>Changelog</h1>
+    <p>What's new in <%= "#{@version.name}" %>?!</p>
+<% end %>
+
+<section>
+    <div class="page-header">
+        <h1>Changelog</h1>
+    </div>
+
+    <div class="row">
+        <div class="span3">
+            <ul class="unstyled">
+            <% @version.changelog.audits.each do |a| %>
+                <li>
+                    <b><%= a == @version.changelog.audits.first ? "Created" : "Updated" %> at:</b>
+                    <%= a.created_at.to_formatted_s(:rfc822) %>
+                </li>
+            <% end %>
+            </ul>
+        </div>
+        <div class="span9">
+            <%= markdown(@version.changelog.text) %>
+        </div>
+    </div> <!-- /.row -->
+</section>

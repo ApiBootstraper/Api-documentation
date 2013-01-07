@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= yield :meta %>
+
+    <title><%= yield(:title).blank? ? '' : raw("#{yield(:title)} | ") %><%= ApiBootstraper.config.app_name %> Documentation</title>
+
+    <!-- Le styles -->
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= yield :link %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <%#
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="150">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="<%= url_for :root %>"><%= ApiBootstraper.config.app_name %> Documentation</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><%= link_to "Home", :root %></li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">REST API <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Home", :rest %></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Versions</li>
+                  <% @versions_all.each do |v| %>
+                    <%- if v.is_active %>
+                    <li><%= link_to v.name, :controller => "versions", :action => "show", :version => v.slug %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </li>
+
+            </ul>
+          </div> <!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <% unless yield(:hero_unit).blank? %>
+      <div class="hero-unit">
+        <%= yield :hero_unit %>
+      </div>
+      <% end %>
+
+      <ul class="breadcrumb">
+        <li><%= link_to "#{ApiBootstraper.config.app_name} Docs", :root %> <span class="divider">&rarr;</span></li>
+        
+        <% if @breadcrumbs %>
+          <% @breadcrumbs[0..-2].each do |txt, path| %>
+            <li><%= link_to(h(txt), path) %> <span class="divider">></span></li>
+          <% end %>
+          <li class="active"><%= h(@breadcrumbs.last.first) %></li>
+        <% else %>
+          <li class="active">Home</li>
+        <% end %>
+      </ul>
+
+      <div class="yield">
+        <%= yield %>
+      </div> <!-- /.yield -->
+
+      <hr>
+
+      <footer>
+        <p>Powered by <a href="<%= ApiBootstraper::Info.url %>"><%= ApiBootstraper::Info.name %></a> - v<%= ApiBootstraper::Info.version %></p>
+      </footer>
+
+    </div> <!-- /.container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+    <%= yield :javascript %>
+
+  </body>
+</html>

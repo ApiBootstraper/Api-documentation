@@ -1,0 +1,103 @@
+    <section id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>">
+        <header class="page-header" data-toggle="collapse" data-parent="#section" href="#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row">
+            <h1><span class="btn btn-<%= http_method_btn_color(service.http_method) %> disabled"><%= service.http_method.upcase %></span> <%= service.name %> <small><%= service.summary %></small></h1>
+        </header>
+
+        <article id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row" class="row collapse">
+            <div class="span2">
+                <!-- <p><i class="icon-info-sign"></i> Not implemented yet.</p> -->
+                <% if service.auth_required == true %><p><i class="icon-warning-sign"></i> <strong>Authentification required.</strong></p><% end %>
+                <p>&nbsp;</p>
+            </div>
+
+            <div class="span10">
+                <% unless service.note.blank? %>
+                <div class="alert alert-info">
+                    <h2>Note</h2>
+                    <p><%= markdown(service.note) %></p>
+                </div>
+                <% end %>
+
+
+                <% if !service.parameters.nil? && service.parameters.count > 0 %>
+                <h2>Parameters</h2>
+
+                <table class="parameters table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Parameter type</th>
+                            <th>Default value</th>
+                            <th>Value type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% if service.parameters.count > 0 %>
+                        <% service.parameters.order("is_required DESC, name ASC").each do |p| %>
+                        <tr<%= p.is_required == true ? raw(' class="required"') : '' %>>
+                            <td><%= p.name.downcase %></td>
+                            <td><%= p.format.downcase %></td>
+                            <td><%= p.default_value.blank? ? '-' : p.default_value %></td>
+                            <td><%= p.value_format.titleize %></td>
+                            <td><%= p.description %></td>
+                        </tr>
+                        <% end %>
+                    <% else %>
+                        <tr>
+                            <td colspan="5">No parameters</td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table> <!-- /.parameters -->
+                <% end %>
+
+
+            <% if !service.example_note.blank? || (!service.examples.nil? && service.examples.count > 0) %>
+                <h2>Example</h2>
+
+                <% unless service.example_note.blank? %>
+                <div>
+                    <p><%= markdown(service.example_note) %></p>
+                </div>
+                <% end %>
+
+                <% if !service.examples.nil? && service.examples.count > 0 %>
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <% service.examples.order("name ASC").each_with_index do |t,i| %>
+                        <li<%= i == 0 ? raw(' class="active"') : '' %>>
+                            <a href="#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}_#{t.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>" data-toggle="tab">
+                                <%= t.name %>
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                    <div class="tab-content">
+                        <% service.examples.order("name ASC").each_with_index do |t,i| %>
+                        <div class="tab-pane <%= i == 0 ? 'active' : '' %>" id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}_#{t.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>">
+                            <% unless t.text.blank? %><div class="well"><%= markdown(t.text) %></div><% end %>
+                            <% unless t.code.blank? %><pre class="prettyprint linenums"><%= t.code %></pre><% end %>
+                        </div>
+                        <% end %>
+                    </div>
+                </div> <!-- /.tabbable -->
+                <% end %>
+            <% end %>
+
+
+                <% if !service.http_errors.nil? && service.http_errors.count > 0 %>
+                <h2>Errors</h2>
+
+                <div class="errors-list">
+                    <dl class="alert alert-warning dl-horizontal">
+                    <% service.http_errors.order("code ASC").each do |e| %>
+                        <dt><%= e.code %></dt>
+                        <dd><%= e.name %></dd>
+                    <% end %>
+                    </dl>
+                </div> <!-- /.errors-list -->
+                <% end %>
+            </div>
+        </article>
+    </section> <!-- /#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %> -->

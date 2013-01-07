@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  route: MyString
+  method: 1
+  summary: MyString
+  resource: 
+
+two:
+  route: MyString
+  method: 1
+  summary: MyString
+  resource: 

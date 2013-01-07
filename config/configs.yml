@@ -1,0 +1,21 @@
+common: &default_settings
+  app_name: "Example"
+  api_hostname: "http://api.example.com/"
+  auth:
+    enable: false
+    username:
+    password:
+
+development:
+  <<: *default_settings
+  app_name: "Example (dev)"
+
+test:
+  <<: *default_settings
+
+staging:
+  <<: *default_settings
+  app_name: "Example (staging)"
+
+production:
+  <<: *default_settings

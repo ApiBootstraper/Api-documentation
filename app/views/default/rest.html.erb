@@ -1,0 +1,112 @@
+<% content_for :title, "REST API" -%>
+<% content_for :hero_unit do %>
+    <h1>REST Api</h1>
+<% end %>
+
+<section>
+    <div class="page-header">
+        <h1>Basics informations</h1>
+    </div>
+
+    <div class="row">
+        <div class="span2">
+            <p>&nbsp;</p>
+        </div>
+
+        <div class="span10">
+            <!-- <p>Your must select the input format : <code>Content-type: application/json</code> for <strong>Json</strong> // <code>Content-type: text/xml</code> for <strong>XML</strong></p>
+            <p>Your must select the output format : <code>Accept: application/json</code> for <strong>Json</strong> // <code>Accept: text/xml</code> for <strong>XML</strong></p> -->
+
+            <div class="row">
+                <dl class="span8">
+                    <dt>Hostname</dt>
+                    <dd><code><%= ApiBootstraper.config.api_hostname %></code></dd>
+                    <dt>&nbsp;</dt>
+                    <dd>&nbsp;</dd>
+                    <dt>Header example</dt>
+                    <dd><pre>X-Api-Version: 0.1.0
+Content-type: application/json
+Accept: application/json</pre></dd>
+                    <dt>&nbsp;</dt>
+                    <dd>&nbsp;</dd>
+                    <dt>Response example</dt>
+                    <dd><pre class="prettyprint linenums">{
+  "header" : {
+    "status" : {
+      "code" : 200,
+      "msg" : "OK"
+    },
+    "env" : "staging",      // not show if production env
+    "request" : "/test",
+    "version" : "0.1.0"
+  },
+  "response" : {...}
+  }
+}</pre></dd>
+                </dl>
+            </div>
+
+        </div>
+    </div> <!-- /.row -->
+</section>
+
+<section>
+    <div class="page-header">
+        <h1>List of versions</h1>
+    </div>
+
+    <div class="row">
+        <div class="span2">
+            <p>Chose the version you want see</p>
+        </div>
+
+        <div class="span10">
+
+            <%# TODO add Group Model for versions %>
+            <h3>Version x</h3>
+
+            <table class="table table-striped">
+                <tbody>
+                    <% @versions_all.each do |v| %>
+                    <%- if v.is_active %>
+                    <tr>
+                        <td width="30%">
+                            <i class="icon-chevron-right"></i>
+                            <%= link_to v.name, :controller => "versions", :action => "show", :version => v.slug %>
+                        </td>
+                        <td width="60%">
+                        <%- unless v.tags.nil? %>
+                          <%- v.tags.each do |t| %>
+                            <span class="label<%= " label-#{t.color}" unless t.color.nil? %>"><%= t.name %></span>
+                          <% end -%>
+                        <% end -%>
+                            <!-- <span class="label label-success">dev</span>
+                            <span class="label label-success">staging</span>
+                            <span class="label label-success">prod</span> -->
+                        </td>
+                        <td>
+                            <%- unless v.changelog.nil? %>
+                            <%= link_to "changelog", :controller => "changelogs", :action => "show", :version => v.slug %>
+                            <% end -%>
+                        </td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+
+        </div>
+    </div> <!-- /.row -->
+</section>
+
+<section>
+    <div class="page-header">
+        <h1>Infrastructure</h1>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            &nbsp;
+        </div>
+    </div> <!-- /.row -->
+</section>
