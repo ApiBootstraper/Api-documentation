@@ -4,13 +4,8 @@
         </header>
 
         <article id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row" class="row collapse">
-            <div class="span2">
-                <!-- <p><i class="icon-info-sign"></i> Not implemented yet.</p> -->
-                <% if service.auth_required == true %><p><i class="icon-warning-sign"></i> <strong>Authentification required.</strong></p><% end %>
-                <p>&nbsp;</p>
-            </div>
 
-            <div class="span10">
+            <div class="span8">
                 <% unless service.note.blank? %>
                 <div class="alert alert-info">
                     <h2>Note</h2>
@@ -98,6 +93,14 @@
                     </dl>
                 </div> <!-- /.errors-list -->
                 <% end %>
-            </div>
+
+            </div> <!-- /.span8 -->
+
+            <div class="span2">
+                <!-- <p><i class="icon-info-sign"></i> Not implemented yet.</p> -->
+                <% if service.auth_required == true %><p><i class="icon-warning-sign"></i> <strong>Authentification required.</strong></p><% end %>
+                <p>&nbsp;</p>
+            </div> <!-- /.span2 -->
+
         </article>
     </section> <!-- /#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %> -->
