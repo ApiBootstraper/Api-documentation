@@ -40,7 +40,7 @@ ActiveAdmin.register Service do
         f.input :resource_id,   :as => :select,      :collection => Hash[Resource.all.map{|r| ["#{r.version.name} - #{r.name}",r.id]}], :required => true
         f.input :name,          :as => :string,      :label => "Path"
         f.input :summary,       :as => :string
-        f.input :http_method,   :as => :select,      :collection => ["GET", "POST", "PUT", "DELETE"], :required => true
+        f.input :http_method,   :as => :select,      :collection => ["GET", "POST", "PUT", "PATCH", "DELETE"], :required => true
         f.input :note,          :as => :text
         f.input :example_note,  :as => :text
         f.input :auth_required
