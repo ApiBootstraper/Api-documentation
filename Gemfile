@@ -13,7 +13,6 @@ gem 'formatize'
 gem 'audited-activerecord'
 
 gem 'activeadmin'
-gem 'formtastic', '~> 2.1.1'    # Bug fix active admin
 
 # Gems used only for assets and not required
 # in production environments by default.
