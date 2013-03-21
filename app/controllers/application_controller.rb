@@ -22,9 +22,12 @@ protected
   end
 
   def authenticate
-    if ApiBootstraper.config.auth.enable == true && ((Rails.env.development? && ( request.host != "localhost" && !request.host.match(/.dev$/i) )) || !Rails.env.development?)
+    config     = ApiBootstraper.config.auth
+    is_dev_env = (Rails.env.development? && ( request.host != "localhost" && !request.host.match(/.dev$/i) )) || !Rails.env.development?
+
+    if config.enable == true && !is_dev_env
       authenticate_or_request_with_http_basic do |username, password|
-        username == ApiBootstraper.config.auth.username && password == ApiBootstraper.config.auth.password
+        username == config.username && password == config.password
       end
     end
   end
