@@ -6,34 +6,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery.turbolinks
 //= require prettify.js
 //= require bootstrap.min.js
+//= require turbolinks
 
 
-$(function() {
+ready = function($) {
+
     window.prettyPrint && prettyPrint();
 
+};
 
-    // fix sub nav on scroll
-    var $win = $(window)
-      , $nav = $('.subnav')
-      , navTop = $('.subnav').length && $('.subnav').offset().top - 40
-      , isFixed = 0
 
-    processScroll()
-
-    $win.on('scroll', processScroll)
-
-    function processScroll() {
-      var i, scrollTop = $win.scrollTop()
-      if (scrollTop >= navTop && !isFixed) {
-        isFixed = 1
-        $nav.addClass('subnav-fixed')
-      } else if (scrollTop <= navTop && isFixed) {
-        isFixed = 0
-        $nav.removeClass('subnav-fixed')
-      }
-    }
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);
