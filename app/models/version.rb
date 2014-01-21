@@ -1,18 +1,20 @@
 class Version < ActiveRecord::Base
+
+  # Relations
   has_many :resources
   has_one :changelog
-  has_and_belongs_to_many :tags, :join_table => "versions_tags"
-  attr_accessible :name, :slug, :is_active, :resources, :changelog
-  attr_accessible :tag_ids
+  has_and_belongs_to_many :tags, join_table: 'versions_tags'
 
   # Validators
-  validates :name,       :presence => true
+  validates :name, presence: true
 
   before_save :create_slug
 
+  scope :active, -> { where(is_active: true) }
+
   def clone_with_associations
     new_version = self.dup
-    # #two-level association 
+    # #two-level association
     self.resources.each do |resource|
       new_resource = resource.dup
 

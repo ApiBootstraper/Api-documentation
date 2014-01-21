@@ -13,7 +13,8 @@ ActiveAdmin.register Changelog do
       f.input :version_id,  :as => :select,      :collection => Version.all, :required => true
       f.input :text,        :as => :text,        :label => "Changelog"
     end
-    f.buttons
+
+    f.actions
   end
 
 end

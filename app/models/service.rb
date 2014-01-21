@@ -1,7 +1,7 @@
 class Service < ActiveRecord::Base
-  attr_accessible :resource_id, :name, :summary, :http_method, :note, :auth_required, :example_note
-  attr_accessible :parameters, :http_errors, :examples
-  attr_accessible :parameters_attributes, :http_errors_attributes, :examples_attributes
+  # attr_accessible :resource_id, :name, :summary, :http_method, :note, :auth_required, :example_note
+  # attr_accessible :parameters, :http_errors, :examples
+  # attr_accessible :parameters_attributes, :http_errors_attributes, :examples_attributes
 
   belongs_to :resource
   has_many :parameters

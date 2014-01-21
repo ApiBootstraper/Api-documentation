@@ -68,7 +68,6 @@ Accept: application/json</pre></dd>
             <table class="table table-striped">
                 <tbody>
                     <% @versions_all.each do |v| %>
-                    <%- if v.is_active %>
                     <tr>
                         <td width="30%">
                             <i class="icon-chevron-right"></i>
@@ -90,7 +89,6 @@ Accept: application/json</pre></dd>
                             <% end -%>
                         </td>
                     </tr>
-                    <% end %>
                     <% end %>
                 </tbody>
             </table>

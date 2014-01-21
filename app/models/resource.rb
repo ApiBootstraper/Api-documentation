@@ -1,7 +1,7 @@
 class Resource < ActiveRecord::Base
   belongs_to :version
   has_many :services
-  attr_accessible :name, :slug, :version_id, :version, :description
+  # attr_accessible :name, :slug, :version_id, :version, :description
 
   # Validators
   validates :version_id,      :presence => true

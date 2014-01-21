@@ -80,7 +80,7 @@ ActiveAdmin.register Service do
       end
     end
 
-    f.buttons
+    f.actions
   end
 
 end

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 protected
   def navigation
-    @versions_all = Version.order("position ASC")
+    @versions_all = Version.active.order("position ASC")
   end
 
   def add_breadcrumb name, url = ''

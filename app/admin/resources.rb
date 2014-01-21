@@ -25,7 +25,8 @@ ActiveAdmin.register Resource do
       f.input :name,        :as => :string
       f.input :description, :as => :string
     end
-    f.buttons
+
+    f.action
   end
 
 end
