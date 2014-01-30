@@ -9,11 +9,11 @@
     </div>
 
     <div class="row">
-        <div class="span2">
+        <div class="col-md-2">
             <p>&nbsp;</p>
         </div>
 
-        <div class="span10">
+        <div class="col-md-10">
             <p>The <code><%= @version.name %></code> of the API is for the alpha version of the application.</p>
         </div>
     </div> <!-- /.row -->
@@ -25,13 +25,13 @@
     </div>
 
     <div class="row">
-        <div class="span2">
+        <div class="col-md-2">
             <p>&nbsp;</p>
         </div>
 
-        <div class="span10">
+        <div class="col-md-10">
             <p>For this version, you must authenticate you for all of services </p>
-            <p>For this version, you must be authenticated to use all services, except <span class="badge badge-success">POST</span><code>/user</code> and <span class="badge badge-info">GET</span><code>/user/availability</code>.</p>
+            <p>For this version, you must be authenticated to use all services, except <span class="label label-success">POST</span><code>/user</code> and <span class="label label-info">GET</span><code>/user/availability</code>.</p>
             <p>The authentication method is the <code>HTTP Basic Auth</code>, with <b>email</b> and <b>password</b>.</p>
         </div>
     </div> <!-- /.row -->
@@ -43,13 +43,13 @@
     </div>
 
     <div class="row">
-        <div class="span2">
+        <div class="col-md-2">
             <p>Chose the service you want see</p>
             <% unless @version.changelog.nil? %><p>See: <%= link_to "changelog", :controller => "changelogs", :action => "show", :version => @version.slug %></p><% end %>
         </div>
 
-        <div class="span10">
-            <table class="table table-striped">
+        <div class="col-md-10">
+            <table class="table">
                 <tbody>
                     <% @version.resources.order("position ASC").each do |r| %>
                     <tr>

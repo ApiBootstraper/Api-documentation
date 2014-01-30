@@ -8,8 +8,8 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require prettify.js
-//= require bootstrap.min.js
 //= require turbolinks
+//= require bootstrap
 
 
 ready = function($) {

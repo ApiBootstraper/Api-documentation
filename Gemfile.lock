@@ -55,6 +55,8 @@ GEM
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
     bluecloth (2.2.0)
+    bootstrap-sass (3.1.0.0)
+      sass (~> 3.2)
     bourbon (3.1.1)
       sass (>= 3.2.0)
       thor
@@ -179,6 +181,7 @@ DEPENDENCIES
   audited-activerecord
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.1.0)
   coffee-rails (~> 3.2.1)
   formatize
   jquery-rails

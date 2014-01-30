@@ -96,11 +96,11 @@
 
             </div> <!-- /.span8 -->
 
-            <div class="span2">
+            <div class="col-md-2">
                 <!-- <p><i class="icon-info-sign"></i> Not implemented yet.</p> -->
                 <% if service.auth_required == true %><p><i class="icon-warning-sign"></i> <strong>Authentification required.</strong></p><% end %>
                 <p>&nbsp;</p>
-            </div> <!-- /.span2 -->
+            </div> <!-- /.col-md-2 -->
 
         </article>
     </section> <!-- /#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %> -->
