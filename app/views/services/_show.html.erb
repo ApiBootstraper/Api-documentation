@@ -1,9 +1,9 @@
-    <section id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>">
-        <header class="page-header" data-toggle="collapse" data-parent="#section" href="#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row">
+    <section id="<%= "#{service.http_method.upcase}_#{service.name.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>">
+        <header class="page-header" data-toggle="collapse" data-parent="#section" href="#<%= "#{service.http_method.upcase}_#{service.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row">
             <h1><span class="btn btn-<%= http_method_btn_color(service.http_method) %> disabled"><%= service.http_method.upcase %></span> <%= service.name %> <small><%= service.summary %></small></h1>
         </header>
 
-        <article id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row" class="row collapse">
+        <article id="<%= "#{service.http_method.upcase}_#{service.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>_row" class="row collapse">
 
             <div class="span8">
                 <% unless service.note.blank? %>
@@ -62,7 +62,7 @@
                     <ul class="nav nav-tabs">
                         <% service.examples.order("name ASC").each_with_index do |t,i| %>
                         <li<%= i == 0 ? raw(' class="active"') : '' %>>
-                            <a href="#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}_#{t.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>" data-toggle="tab">
+                            <a href="#<%= "#{service.http_method.upcase}_#{service.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}_#{t.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>" data-toggle="tab">
                                 <%= t.name %>
                             </a>
                         </li>
@@ -70,7 +70,7 @@
                     </ul>
                     <div class="tab-content">
                         <% service.examples.order("name ASC").each_with_index do |t,i| %>
-                        <div class="tab-pane <%= i == 0 ? 'active' : '' %>" id="<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}_#{t.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>">
+                        <div class="tab-pane <%= i == 0 ? 'active' : '' %>" id="<%= "#{service.http_method.upcase}_#{service.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}_#{t.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %>">
                             <% unless t.text.blank? %><div class="well"><%= markdown(t.text) %></div><% end %>
                             <% unless t.code.blank? %><pre class="prettyprint linenums"><%= t.code %></pre><% end %>
                         </div>
@@ -103,4 +103,4 @@
             </div> <!-- /.col-md-2 -->
 
         </article>
-    </section> <!-- /#<%= "#{service.http_method.upcase}_#{service.summary.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %> -->
+    </section> <!-- /#<%= "#{service.http_method.upcase}_#{service.name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')}" %> -->

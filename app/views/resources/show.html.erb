@@ -5,7 +5,7 @@
         <ul class="nav nav-stacked affix" style="width: 170px">
             <% @resource.services.order("position ASC").each do |s| %>
             <li>
-                <a href="#<%= "#{s.http_method.upcase}_#{s.summary.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>" title="<%= s.summary %>">
+                <a href="#<%= "#{s.http_method.upcase}_#{s.name.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>" title="<%= s.summary %>">
                     <span class="label label-<%= http_method_color(s.http_method) %>">&nbsp;</span>
                     <%= s.name %>
                 </a>
