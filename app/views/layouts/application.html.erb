@@ -72,7 +72,7 @@
 
       <ul class="breadcrumb">
         <li><%= link_to "#{ApiBootstraper.config.app_name} Docs", :root %> <span class="divider">&rarr;</span></li>
-        
+
         <% if @breadcrumbs %>
           <% @breadcrumbs[0..-2].each do |txt, path| %>
             <li><%= link_to(h(txt), path) %> <span class="divider"></span></li>
@@ -83,7 +83,7 @@
         <% end %>
       </ul>
 
-      <div class="yield well">
+      <div class="yield">
         <%= yield %>
       </div> <!-- /.yield -->
 
