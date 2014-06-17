@@ -10,8 +10,7 @@
  *
  *= require_self
  *= require prettify.css
- *= require bootstrap.min.css
- *= require bootstrap-responsive.min.css
+ *= require bootstrap
 */
 
 body {

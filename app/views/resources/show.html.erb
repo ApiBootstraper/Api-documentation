@@ -1,26 +1,26 @@
 <% content_for :title, "#{@resource.name.titleize} service < #{@resource.version.name} < REST API" -%>
 
 <div class="row">
-    <div class="span2 subnav">
-        <ul class="nav nav-tabs nav-stacked affix" style="width: 170px">
+    <div class="col-md-2 subnav">
+        <ul class="nav nav-stacked affix" style="width: 170px">
             <% @resource.services.order("position ASC").each do |s| %>
             <li>
-                <a href="#<%= "#{s.http_method.upcase}_#{s.summary.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>" title="<%= s.summary %>">
-                    <span class="badge badge-<%= http_method_color(s.http_method) %>">&nbsp;</span>
+                <a href="#<%= "#{s.http_method.upcase}_#{s.name.downcase.strip.gsub('/ ', '_').gsub(/[^\w-]/, '')}" %>" title="<%= s.summary %>">
+                    <span class="label label-<%= http_method_color(s.http_method) %>">&nbsp;</span>
                     <%= s.name %>
                 </a>
             </li>
             <% end %>
         </ul>
-    </div> <!-- /.span2 -->
+    </div> <!-- /.col-md-2 -->
 
-    <div class="span10">
+    <div class="col-md-10">
         <div id="sections">
             <% @resource.services.order("position ASC").each do |s| %>
                 <%= render :partial => "services/show", :locals => { :service => s } %>
             <% end %>
         </div> <!-- /#sections -->
-    </div> <!-- /.span10 -->
+    </div> <!-- /.col-md-10 -->
 </div>
 
 
