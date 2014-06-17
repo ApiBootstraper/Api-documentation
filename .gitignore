@@ -18,3 +18,5 @@ pickle-email-*.html
 .powrc
 
 .DS_Store
+
+config/*.yml

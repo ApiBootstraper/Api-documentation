@@ -1,0 +1,39 @@
+defaults: &defaults
+  app_name: "Example"
+  api_hostname: "http://api.example.com/"
+  auth:
+    enable: true
+    username: ~
+    password: ~
+
+#
+# Below this settings are principally used by developers
+#
+development:
+  <<: *defaults
+  app_name: "ApiBootstraper (dev)"
+  api_hostname: api.apibootstraper.dev
+  auth:
+    enable: false
+
+test:
+  <<: *defaults
+  auth:
+    enable: false
+
+#
+# Custom here
+#
+production:
+  <<: *defaults
+  # The name of the application.
+  # app_name: "Example"
+
+  # The host of the API.
+  # api_hostname: "http://api.example.com/"
+
+  # Authentication settings.
+  # auth:
+  #   enable: true
+  #   username: ~
+  #   password: ~
