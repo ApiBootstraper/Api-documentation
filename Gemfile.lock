@@ -156,6 +156,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    settingslogic (2.0.9)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -193,5 +194,6 @@ DEPENDENCIES
   pg
   rails (= 3.2.18)
   sass-rails (~> 3.2.3)
+  settingslogic
   turbolinks
   uglifier (>= 1.0.3)
