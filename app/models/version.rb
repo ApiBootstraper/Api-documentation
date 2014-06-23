@@ -5,6 +5,10 @@ class Version < ActiveRecord::Base
   attr_accessible :name, :slug, :is_active, :resources, :changelog
   attr_accessible :tag_ids
 
+  # FriendlyId config
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   # Validators
   validates :name,       :presence => true
 

@@ -19,6 +19,8 @@ gem 'bootstrap-sass', '~> 3.1.0'
 
 gem 'settingslogic'
 
+gem 'friendly_id'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

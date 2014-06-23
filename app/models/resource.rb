@@ -3,6 +3,10 @@ class Resource < ActiveRecord::Base
   has_many :services
   attr_accessible :name, :slug, :version_id, :version, :description
 
+  # FriendlyId config
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   # Validators
   validates :version_id,      :presence => true
   validates :name,            :presence => true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429143200) do
+ActiveRecord::Schema.define(:version => 20140623220047) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -97,6 +97,17 @@ ActiveRecord::Schema.define(:version => 20120429143200) do
 
   add_index "examples", ["service_id"], :name => "index_examples_on_service_id"
 
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
   create_table "parameters", :force => true do |t|
     t.integer  "service_id"
     t.boolean  "is_required"
@@ -120,6 +131,8 @@ ActiveRecord::Schema.define(:version => 20120429143200) do
     t.text     "description"
     t.integer  "position"
   end
+
+  add_index "resources", ["slug", "version_id"], :name => "index_resources_on_slug_and_version_id", :unique => true
 
   create_table "services", :force => true do |t|
     t.integer  "resource_id"
@@ -151,6 +164,8 @@ ActiveRecord::Schema.define(:version => 20120429143200) do
     t.boolean  "is_active"
     t.integer  "position"
   end
+
+  add_index "versions", ["slug"], :name => "index_versions_on_slug", :unique => true
 
   create_table "versions_tags", :id => false, :force => true do |t|
     t.integer "version_id"
