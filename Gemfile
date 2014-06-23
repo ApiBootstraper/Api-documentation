@@ -6,7 +6,6 @@ gem 'rails', '3.2.18'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 
 gem 'pg'
 

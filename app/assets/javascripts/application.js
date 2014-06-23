@@ -6,18 +6,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require jquery.turbolinks
+// require turbolinks
 //= require prettify.js
-//= require turbolinks
 //= require bootstrap
 
 
-ready = function($) {
-
+!function ($) {
+  $(function() {
     window.prettyPrint && prettyPrint();
-
-};
-
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
+  });
+}(window.jQuery);
